@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">android-save-data</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="error_field_required">Email không được rỗng</string>
+    <string name="error_invalid_email">Email không đúng định dạng</string>
+    <string name="error_invalid_password">Mật khẩu phải lớn hơn 4 ký tự</string>
+</resources>
