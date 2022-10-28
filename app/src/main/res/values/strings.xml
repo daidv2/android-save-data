@@ -7,4 +7,7 @@
     <string name="error_field_required">Email không được rỗng</string>
     <string name="error_invalid_email">Email không đúng định dạng</string>
     <string name="error_invalid_password">Mật khẩu phải lớn hơn 4 ký tự</string>
+
+    <string name="load">LOAD</string>
+    <string name="logout">LOGOUT</string>
 </resources>

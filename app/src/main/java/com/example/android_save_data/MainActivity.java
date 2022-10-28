@@ -1,5 +1,6 @@
 package com.example.android_save_data;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +13,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Shared Preferences in Android
  *
  * Android Studio > Device File Explorer
  *     /data/data/com.example.android_save_data/shared_prefs/LoginDetails.xml
+ *     /data/data/com.example.android_save_data/files/Code.txt
  * Link references:
  *     https://hiepsiit.com/detail/android/laptrinhandroid/sharedpreferences
  */
@@ -103,8 +110,11 @@ public class MainActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
             // save data in local shared preferences
-            if (checkBoxRememberMe.isChecked())
+            if (checkBoxRememberMe.isChecked()) {
                 saveLoginDetails(email, password);
+            }
+
+            saveFile(email, password);
             startHomeActivity();
         }
     }
@@ -128,4 +138,28 @@ public class MainActivity extends AppCompatActivity {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
+
+    public void saveFile(String email, String password)  // SAVE
+    {
+        File file= null;
+
+            FileOutputStream fileOutputStream = null;
+            try {
+                email = email + " ";
+                file = getFilesDir();
+                // OR MODE_APPEND
+                fileOutputStream = openFileOutput("Code.txt", Context.MODE_PRIVATE);
+                fileOutputStream.write(email.getBytes());
+                fileOutputStream.write(password.getBytes());
+                Toast.makeText(this, "Saved \n" + "Path --" + file + "\tCode.txt", Toast.LENGTH_SHORT).show();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 }
